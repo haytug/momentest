@@ -1,0 +1,106 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "momentest"
+version = "0.1.0"
+description = "Simulated Method of Moments (SMM) and Generalized Method of Moments (GMM) estimation in Python"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "Harry Aytug", email = "haytug@gmail.com"}
+]
+maintainers = [
+    {name = "Harry Aytug", email = "haytug@gmail.com"}
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering",
+    "Typing :: Typed",
+]
+keywords = [
+    "econometrics",
+    "SMM",
+    "GMM",
+    "estimation",
+    "simulation",
+    "moments",
+    "structural estimation",
+    "method of moments",
+]
+dependencies = [
+    "numpy>=1.20",
+    "scipy>=1.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "hypothesis>=6.0",
+    "matplotlib>=3.5",
+    "ruff>=0.1.0",
+    "nbval>=0.10",
+    "jupyter",
+]
+plot = [
+    "matplotlib>=3.5",
+]
+all = [
+    "matplotlib>=3.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/haytug/momentest"
+Documentation = "https://github.com/haytug/momentest#readme"
+Repository = "https://github.com/haytug/momentest"
+Changelog = "https://github.com/haytug/momentest/blob/main/CHANGELOG.md"
+Issues = "https://github.com/haytug/momentest/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["momentest*"]
+
+[tool.setuptools.package-data]
+momentest = ["data/*.txt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "notebooks: marks notebook execution tests",
+]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["momentest"]
